@@ -1,4 +1,32 @@
 .home {
-    background-color: #BBE42A;
+    
+    background-color: #333;
+    color: #BBE42A;
+}
+
+.wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.channelBox {
+    width: 250px;
+    margin: 20px;
+}
+.channelBox img {
+    width: 100%;
+}
+
+.home h1 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
 }
 

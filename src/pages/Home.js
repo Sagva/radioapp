@@ -5,19 +5,24 @@ import styles from "../styles/Home.module.css";
 const HomePage = () => {
   
     const { channels } = useContext(ChannelContext);
-    console.log(channels);
+    let fetchedChannels;
+    let content = ''
+    if(channels) {
+        fetchedChannels = channels.channels
+        console.log(channels.channels);
+        content = <div className={styles.wrapper}>{fetchedChannels.map((ch, i) => (
 
-//   const renderChannels = () => {
-//     return channels.map((channel) => (
-//       <div>
-        
-//       </div>
-//     ));
-//   };
+            <div key={i} className={styles.channelBox}><img  src={ch.image} alt={`${ch.channeltype} ${ch.name}`}></img></div>  
+        ))}</div>
+    } else {
+        content = <div>Loading...</div>
+    }
 
     return (
         <div className={styles.home}>
-            <h1>This is the Home page</h1>
+            <h1>Our channels</h1>
+            {content}
+            
         </div>
     );
 };
