@@ -1,11 +1,25 @@
-import React from 'react'
+import { useContext } from "react";
+import { ChannelContext } from "../contexts/ChannelContext";
+import styles from "../styles/Home.module.css";
 
-function Home () {
+const HomePage = () => {
+  
+    const { channels } = useContext(ChannelContext);
+    console.log(channels);
+
+//   const renderChannels = () => {
+//     return channels.map((channel) => (
+//       <div>
+        
+//       </div>
+//     ));
+//   };
+
     return (
-        <div>
-            <h1>Home page</h1>
+        <div className={styles.home}>
+            <h1>This is the Home page</h1>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default HomePage;

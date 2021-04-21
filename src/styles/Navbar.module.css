@@ -1,0 +1,13 @@
+.navbar a{
+    display:inline-block;
+    text-decoration: none;
+    padding: 0.5rem;
+    color: #464646;
+    font-size: 1.5rem;
+}
+
+.navbar a:hover, 
+.navbar a.active{
+    color: #BBE42A;
+    text-decoration: underline;
+}
