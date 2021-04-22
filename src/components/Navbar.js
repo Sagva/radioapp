@@ -1,14 +1,13 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import styles from '../styles/Navbar.module.css'
-import Logo from '../images/logo.png';
+import Logo from '../images/radioLogo1.svg';
 
 function Navbar () {
     return (
         <div className={styles.navbar}>
             <div className={styles.brandBox}>
                 <img className={styles.brandLogo} src={Logo} alt="Logo"/>
-                <span className={styles.brandName}>Radio</span>
             </div>
             <ul>
                 <NavLink to='/'>Home</NavLink>
