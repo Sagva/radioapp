@@ -1,13 +1,13 @@
 .navbar {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .brandBox {
-    width: 80px;
+    width: 100px;
     display: flex;
     align-items: center;
 }
@@ -24,7 +24,7 @@
 .navbar a{
     display:inline-block;
     text-decoration: none;
-    padding: 0.5rem;
+    padding: 0 0.4rem;
     color: #333;
     font-size: 1.5rem;
 }
@@ -33,4 +33,23 @@
 .navbar a.active{
     color: #BBE42A;
     text-decoration: underline;
+}
+
+
+@media (min-width: 576px) {
+    .brandBox {
+        width: 150px;
+        
+    }
+    
+    .navbar a {
+        padding: 0.5rem;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .navbar {
+        margin: 0 auto;
+    }
 }

@@ -1,0 +1,30 @@
+.wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.channelBox {
+    width: 250px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+
+.channelBox img {
+    width: 100%;
+}
+@media (min-width: 992px) {
+    .wrapper {
+        justify-content: space-evenly;
+    }
+}
+@media (min-width: 1200px) {
+    .wrapper {
+        justify-content: space-between;
+    }
+}
