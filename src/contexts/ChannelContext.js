@@ -4,6 +4,7 @@ export const ChannelContext = createContext();
 
 const ChannelContextProvider = (props) => {
   const [channels, setChannels] = useState(null);
+  
 
   useEffect(() => {
     getAllChannels();
@@ -16,10 +17,21 @@ const ChannelContextProvider = (props) => {
     setChannels(channels);
   };
 
+  const getChannelbyId = async (channelId) => {
+    let channel = await fetch(`/api/v1/channels/${channelId}`);
+    channel = await channel.json();
+    
+    return channel
+
+    // setOneChannel(channel);
+  };
+
  
 
   const values = {
     channels,
+    
+    getChannelbyId
   };
 
   return (
