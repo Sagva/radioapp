@@ -1,8 +1,53 @@
+h2 {
+    padding: 20px 10px !important;
+}
 .channelDetails {
-    /* background-color: #333; */
+    background-color: #333;
 }
 
 .wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    color: #ffffff;
+}
+
+.channelInfo {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.channelImgBox {
+    width: 200px;
+    height: 200px;
+}
+
+.channelImgBox img {
+    width: 100%;
+    height: auto;
+}
+.channelTagline{
+    margin: 20px 10px;
+}
+
+.dateLabel {
+    margin: 10px;
+}
+
+@media (min-width: 768px) {
+    .channelInfo {
+        flex-direction: row;
+        justify-content: center;
+        padding: 0 0 20px 20px;
+    }
+    .channelImgBox {
+        flex-shrink: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .channelInfo {
+        padding: 0;
+        padding-bottom: 20px;
+    }
 }

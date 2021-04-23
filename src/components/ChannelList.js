@@ -7,21 +7,18 @@ const ChannelList = () => {
     const history = useHistory()
   
     const { channels, oneChannel } = useContext(ChannelContext);
-    let fetchedChannels;
     
    
     let content = ''
-    if(channels) {
-        fetchedChannels = channels.channels
-        console.log(channels.channels);
-        content = <div className={styles.wrapper}>{fetchedChannels.map((ch, i) => (
 
-            <div key={i} className={styles.channelBox} onClick={() => history.push(`/channels/${ch.id}`)}>
-                <img  src={ch.image} alt={`${ch.channeltype} ${ch.name}`}></img>
-            </div>  
-        ))}
+    if(channels) {
+        let fetchedChannels = channels.channels
         
-            
+        content = <div className={styles.wrapper}>{fetchedChannels.map((ch, i) => (
+                <div key={i} className={styles.channelBox} onClick={() => history.push(`/channels/${ch.id}`)}>
+                    <img  src={ch.image} alt={`${ch.channeltype} ${ch.name}`}></img>
+                </div>  
+            ))}
         </div>
     } else {
         content = <div>Loading...</div>

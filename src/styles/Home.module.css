@@ -1,20 +1,13 @@
 .home {
     
     background-color: #333;
-    color: #BBE42A;
+    
 }
 
 
 
 
-.home h1 {
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 30px;
-    text-align: center;
-    margin: 0;
-    padding: 20px 0;
-}
+
 /* 
 <button className={styles.btn}>Se alla kanaler</button>
  

@@ -10,8 +10,8 @@ function Navbar () {
                 <img className={styles.brandLogo} src={Logo} alt="Logo"/>
             </div>
             <ul>
-                <NavLink to='/'>Home</NavLink>
-                <NavLink to='/about'>About</NavLink>
+                <li><NavLink to='/'>Home</NavLink></li>
+                <li><NavLink to='/about'>About</NavLink></li>
                 {/* <NavLink to='#'>Signin</NavLink> */}
             </ul>
         </div>

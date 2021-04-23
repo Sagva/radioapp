@@ -21,7 +21,12 @@
     font-weight: 400;
     color: #333;
 }
-.navbar a{
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin-bottom: 0;
+}
+.navbar li a{
     display:inline-block;
     text-decoration: none;
     padding: 0 0.4rem;
@@ -29,8 +34,8 @@
     font-size: 1.5rem;
 }
 
-.navbar a:hover, 
-.navbar a.active{
+.navbar li a:hover, 
+.navbar li a.active{
     color: #BBE42A;
     text-decoration: underline;
 }
@@ -42,7 +47,7 @@
         
     }
     
-    .navbar a {
+    .navbar li a {
         padding: 0.5rem;
     }
 
