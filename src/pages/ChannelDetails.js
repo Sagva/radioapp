@@ -3,11 +3,13 @@ import { ChannelContext } from "../contexts/ChannelContext";
 import styles from "../styles/ChannelDetails.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ChannelSchedule from '../components/ChannelSchedule'
+import ChannelPrograms from '../components/ChannelPrograms'
 
 
 const ChannelDetails = (props) => {
     const {channelId} = props.match.params
     const [oneChannel, setOneChannel] = useState(null);
+    const [componentToRender, setComponentToRender] = useState('schedule');
     
 
     const {getChannelbyId } = useContext(ChannelContext);
@@ -22,18 +24,20 @@ const ChannelDetails = (props) => {
 
     
     const getCurrentDate = () => {
-        //2020-01-01
+        
         const today = new Date(); 
         const nullBeforeMonth = today.getMonth() <= 9 ? '0' : '' 
         const nullBeforeDay = today.getDate() <= 9 ? '0' : '' 
         const date = today.getFullYear() + '-' + nullBeforeMonth + (today.getMonth() + 1) + '-' +  nullBeforeDay + today.getDate();
-        return date
+        return date //2020-01-01
     }
     const [chosenDate, setChosenDate] = useState(getCurrentDate());
-    // let chosenDate;
     const handleChange = (e) => {
         console.log(e.target.value);
         setChosenDate(e.target.value)
+    }
+    const chooseComponentToRender = (e) => {
+        setComponentToRender(e.target.value);
     }
 
     let content = ''
@@ -48,6 +52,10 @@ const ChannelDetails = (props) => {
                 </div>
                 <div className={styles.channelTagline}>{fetchedChannel.tagline}</div>
                 
+            </div>
+            <div>
+                <button type="button" value='schedule' onClick={(e)=>chooseComponentToRender(e)}>Tablå</button>
+                <button type="button" value='program' onClick={(e)=>chooseComponentToRender(e)}>Program</button>
             </div>
             <div style={{background: 'white', color: '#333'}}>
                 <h2>Tablå</h2>
@@ -64,9 +72,18 @@ const ChannelDetails = (props) => {
 
                     </div>
                 </div>
+                {componentToRender === 'schedule' ? 
+                    <ChannelSchedule channelId={channelId} chosenDate={chosenDate}/> :
+                    <ChannelPrograms channelId={channelId}/>
+                }
                 
-                <ChannelSchedule channelId={channelId} chosenDate={chosenDate}/>
+                {/* <ChannelSchedule channelId={channelId} chosenDate={chosenDate}/> */}
             </div>
+
+            {/* <div>
+            <h2>Program</h2>
+            <ChannelPrograms channelId={channelId}/>
+            </div> */}
         </div>
     } else {
         content = <div>Loading...</div>

@@ -6,7 +6,7 @@ import { ChannelContext } from "../contexts/ChannelContext";
 const ChannelSchedule = (props) => {
     let channelId = props.channelId
     let chosenDate = props.chosenDate
-    console.log(chosenDate);
+    
     const [schedule, setSchedule] = useState(null);
     const {getChannelSchedule } = useContext(ChannelContext);
     
@@ -20,10 +20,10 @@ const ChannelSchedule = (props) => {
         
     },[chosenDate])
 
-    useEffect( ()=> {
-        console.log(schedule);
+    // useEffect( ()=> {
+    //     console.log(schedule);
         
-    },[schedule])
+    // },[schedule])
 
     
 

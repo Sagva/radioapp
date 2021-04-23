@@ -23,16 +23,20 @@ const ChannelContextProvider = (props) => {
     channel = await channel.json();
     
     return channel
-
-    // setOneChannel(channel);
   };
+
   const getChannelSchedule = async (channelId, chosenDate) => {
     let schedule = await fetch(`/api/v1/channels/schedule/${channelId}/${chosenDate}`);
     schedule = await schedule.json();
     
     return schedule
+  };
 
-    // setSchedule(schedule);
+  const getChannelPrograms = async (channelId) => {
+    let programs = await fetch(`/api/v1/channels/programs/${channelId}`);
+    programs = await programs.json();
+    
+    return programs
   };
 
  
@@ -40,7 +44,8 @@ const ChannelContextProvider = (props) => {
   const values = {
     channels,
     getChannelbyId,
-    getChannelSchedule
+    getChannelSchedule,
+    getChannelPrograms
   };
 
   return (

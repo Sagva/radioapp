@@ -1,0 +1,24 @@
+.programsBox {
+    margin: 10px;
+}
+.programInfo {
+    display: flex;
+    margin: 20px 0;
+
+}
+.programImgBox {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    margin-right: 10px;
+
+}
+
+.programImgBox img {
+    width: 100%;
+    height: auto;
+}
+
+.programDetails{
+
+}
