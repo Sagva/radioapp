@@ -5,7 +5,6 @@ import { ChannelContext } from "../contexts/ChannelContext";
 
 const ChannelPrograms = (props) => {
     let channelId = props.channelId
-    console.log(channelId);
     
     const {getChannelPrograms } = useContext(ChannelContext);
     const [programs, setPrograms] = useState(null);
@@ -33,7 +32,7 @@ const ChannelPrograms = (props) => {
         
         
         content = <div className={styles.programsBox}>
-
+            <h2>{programs[0].channel.name} Program</h2>
             {programs.map((program, i) => (
 
             <div key={i} className={styles.programInfo}>
@@ -55,7 +54,7 @@ const ChannelPrograms = (props) => {
         content = <div>Loading...</div>
     }
     return (
-        <div className={styles.channelPrograms}>
+        <div >
            
             {content}
         </div>

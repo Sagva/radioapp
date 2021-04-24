@@ -21,3 +21,7 @@ h1 {
   padding: 20px 0;
   color: #BBE42A;
 }
+
+h2 {
+  margin-bottom: 0 !important;
+}

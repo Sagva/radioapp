@@ -1,11 +1,8 @@
-.programsBox {
-    margin: 10px;
-}
 .programInfo {
     display: flex;
     margin: 20px 0;
-
 }
+
 .programImgBox {
     width: 100px;
     height: 100px;
@@ -19,6 +16,3 @@
     height: auto;
 }
 
-.programDetails{
-
-}
