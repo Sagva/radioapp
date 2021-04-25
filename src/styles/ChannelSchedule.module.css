@@ -3,9 +3,12 @@
 }
 .programInfo{
     margin: 0 10px;
-    /* padding: 10px;
-    border-bottom: 1px solid #eee; */
+    cursor: pointer;
 }
+.programInfo:hover{
+    background-color: rgba(238, 238, 238, 0.486);
+}
+
 .dateLabel {
     margin: 10px;
     

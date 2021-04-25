@@ -39,7 +39,7 @@ const ChannelPrograms = (props) => {
             <h2>{programs[0].channel.name} Program</h2>
             {programs.map((program, i) => (
 
-            <div key={i} className={styles.programInfo} onClick={()=>redirectToProgramPage(`${program.id}`)}>
+            <div key={i} className={`${styles.programInfo} d-flex my-3`} onClick={()=>redirectToProgramPage(`${program.id}`)}>
                 <div className={styles.programImgBox}><img src={program.programimage} alt={program.name}/></div>
                 <div className={styles.programDetails}>
                     <span><b>{program.name}</b> </span>

@@ -1,6 +1,8 @@
 .programInfo {
-    display: flex;
-    margin: 20px 0;
+    cursor: pointer;
+}
+.programInfo:hover{
+    background-color: rgba(238, 238, 238, 0.486);
 }
 
 .programImgBox {

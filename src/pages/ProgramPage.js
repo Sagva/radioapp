@@ -36,9 +36,9 @@ const ProgramPage = (props) => {
             <div className='d-sm-flex'>
                 <div className='mx-3 my-2'><img className='img-fluid img-thumbnail' src={program.programimage} alt={program.name}/></div>
                 <div>
-                    <p className='mx-3 my-2'><b>Kanal:</b> {program.channel.name}</p>
+                    { program.channel.name !='[No channel]' && <p className='mx-3 my-2'><b>Kanal:</b> {program.channel.name}</p>}
                     <p className='mx-3 my-2'><b>Kategori:</b> {program.programcategory.name}</p>
-                    <p className='mx-3 my-2'><b>Sänds:</b> {program.broadcastinfo}</p>
+                    { program.broadcastinfo && <p className='mx-3 my-2'><b>Sänds:</b> {program.broadcastinfo}</p>}
                     <p className='mx-3 my-2'><b>Beskrivning:</b> {program.description}</p>
                 </div>
             </div>

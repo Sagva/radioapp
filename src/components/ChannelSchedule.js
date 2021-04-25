@@ -1,7 +1,7 @@
- import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
- import styles from "../styles/ChannelSchedule.module.css";
-
+import styles from "../styles/ChannelSchedule.module.css";
+import {useHistory} from 'react-router-dom'
 
 const ChannelSchedule = (props) => {
     let channelId = props.channelId
@@ -28,10 +28,10 @@ const ChannelSchedule = (props) => {
         
     },[chosenDate])
 
-    // useEffect( ()=> {
-    //     console.log(schedule);
+    useEffect( ()=> {
+        console.log(schedule);
         
-    // },[schedule])
+    },[schedule])
 
     
     
@@ -39,7 +39,10 @@ const ChannelSchedule = (props) => {
         console.log(e.target.value);
         setChosenDate(e.target.value)
     }
-    
+    const history = useHistory()
+    const redirectToProgramPage =(programId) => {
+        history.push(`/channels/program/${programId}`)
+    }
 
     let content = ''
     if(schedule) {
@@ -59,7 +62,7 @@ const ChannelSchedule = (props) => {
             </div>
             {schedule.map((program, i) => (
 
-             <div key={i} className={styles.programInfo}>
+             <div key={i} className={`${styles.programInfo}`} onClick={()=>redirectToProgramPage(`${program.program.id}`)}>
                  <span className='d-inline-block mt-2'><b>{program.starttimeutc}</b> <b>{program.program.name}</b></span>
                  <p className={styles.programDesc}>{program.description}</p>
              </div>
