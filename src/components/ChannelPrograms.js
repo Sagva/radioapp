@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
+import {useHistory} from 'react-router-dom'
 import { ChannelContext } from "../contexts/ChannelContext";
- import styles from "../styles/ChannelPrograms.module.css";
+import styles from "../styles/ChannelPrograms.module.css";
 
 
 const ChannelPrograms = (props) => {
@@ -20,12 +21,15 @@ const ChannelPrograms = (props) => {
         
     },[])
 
-    useEffect( ()=> {
-        console.log(programs);
+    // useEffect( ()=> {
+    //     console.log(programs);
         
-    },[programs])
+    // },[programs])
 
-    
+    const history = useHistory()
+    const redirectToProgramPage =(programId) => {
+        history.push(`/channels/program/${programId}`)
+    }
 
     let content = ''
     if(programs) {
@@ -35,7 +39,7 @@ const ChannelPrograms = (props) => {
             <h2>{programs[0].channel.name} Program</h2>
             {programs.map((program, i) => (
 
-            <div key={i} className={styles.programInfo}>
+            <div key={i} className={styles.programInfo} onClick={()=>redirectToProgramPage(`${program.id}`)}>
                 <div className={styles.programImgBox}><img src={program.programimage} alt={program.name}/></div>
                 <div className={styles.programDetails}>
                     <span><b>{program.name}</b> </span>

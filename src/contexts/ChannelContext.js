@@ -8,7 +8,7 @@ const ChannelContextProvider = (props) => {
   
 
   useEffect(() => {
-    getAllChannels();
+    getAllChannels()
   }, []);
 
   const getAllChannels = async () => {
@@ -39,13 +39,21 @@ const ChannelContextProvider = (props) => {
     return programs
   };
 
+  const getProgrambyId = async (programId) => {
+    let program = await fetch(`/api/v1/channels/program/${programId}`);
+    program = await program.json();
+    
+    return program
+  };
+
  
 
   const values = {
     channels,
     getChannelbyId,
     getChannelSchedule,
-    getChannelPrograms
+    getChannelPrograms,
+    getProgrambyId
   };
 
   return (

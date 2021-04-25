@@ -5,10 +5,19 @@ const paginationFalse = 'pagination=false'
 const utils = require('../core/utilities')
 
 const getAllChannels = async (req,res) => {
+    
     let allChannels = await fetch(`http://api.sr.se/api/v2/channels/?${json}&${paginationFalse}`)
+    if(!allChannels.ok){
+        throw new Error(allChannels.status)
+    }
+    
     allChannels = await allChannels.json()
-    res.json(allChannels)
+    allChannels = res.json(allChannels)
+    
+    
 }
+
+
 const getChannelbyId = async (req,res) => {
     let channel = await fetch(`http://api.sr.se/api/v2/channels/${req.params.channelId}?${json}`)
     channel = await channel.json()
@@ -32,17 +41,26 @@ const getChannelSchedule = async (req,res) => {
     res.json(schedule.schedule)
 }
 const getChannelPrograms = async (req,res) => {
-    console.log(req.params.channelId);
     let programs = await fetch(`http://api.sr.se/api/v2/programs/index?channelid=${req.params.channelId}&${json}&${paginationFalse}`)
     programs = await programs.json()
 
     res.json(programs)
 }
+const getProgramById = async (req,res) => {
+    let program = await fetch(`http://api.sr.se/api/v2/programs/${req.params.programId}?${json}&${paginationFalse}`)
+    
+    program = await program.json()
+
+    res.json(program)
+}
+
 
 
 module.exports = {
     getAllChannels,
     getChannelbyId,
     getChannelSchedule,
-    getChannelPrograms
+    getChannelPrograms,
+    getProgramById,
+    
 }
