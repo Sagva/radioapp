@@ -3,28 +3,26 @@ import {useHistory} from 'react-router-dom'
 import { ChannelContext } from "../contexts/ChannelContext";
 import styles from "../styles/ChannelPrograms.module.css";
 
-
-const ChannelPrograms = (props) => {
-    let channelId = props.channelId
-    
-    const {getChannelPrograms } = useContext(ChannelContext);
+const ChosenPrograms = (props) => {
+    const categoryId = props.match.params.categoryId
+    const {getProgramsByCategoryId } = useContext(ChannelContext);
     const [programs, setPrograms] = useState(null);
     
     
     useEffect( ()=> {
         const programsGetting = async () => {
-            let response = await getChannelPrograms(channelId)
+            let response = await getProgramsByCategoryId(categoryId)
             setPrograms(response.programs)
 
         }
         programsGetting()
         
-    },[channelId])
+    },[categoryId])
 
-    // useEffect( ()=> {
-    //     console.log(programs);
+    useEffect( ()=> {
+        console.log(programs);
         
-    // },[programs])
+    },[programs])
 
     const history = useHistory()
     const redirectToProgramPage =(programId) => {
@@ -36,7 +34,7 @@ const ChannelPrograms = (props) => {
         
         
         content = <div className={styles.programsBox}>
-            <h2>Program</h2>
+            <h2 className='px-0 border-bottom'>{programs[0].programcategory.name}</h2>
             {programs.map((program, i) => (
 
             <div key={i} className={`${styles.programInfo} d-flex my-3`} onClick={()=>redirectToProgramPage(`${program.id}`)}>
@@ -58,12 +56,12 @@ const ChannelPrograms = (props) => {
         content = <div>Loading...</div>
     }
     return (
-        <div >
+        <div className='container'>
            
             {content}
         </div>
     );
 };
 
-export default ChannelPrograms;
+export default ChosenPrograms;
 

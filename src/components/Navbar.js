@@ -5,7 +5,7 @@ import Logo from '../images/radioLogo1.svg';
 
 function Navbar () {
     return (
-        <div className={styles.navbar}>
+        <div className={`${styles.navbar} container d-flex align-items-center justify-content-between`}>
             <div className={styles.brandBox}>
                 <img className={styles.brandLogo} src={Logo} alt="Logo"/>
             </div>

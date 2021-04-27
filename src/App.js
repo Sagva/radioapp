@@ -6,17 +6,19 @@ import Navbar from './components/Navbar'
 import ProgramPage from './pages/ProgramPage'
 
 import ChannelContextProvider from './contexts/ChannelContext'
+import ChosenPrograms from './pages/ChosenPrograms'
 
 function App() {
   return (
     <div className="App">
     <BrowserRouter>
       <ChannelContextProvider>
-        <Navbar></Navbar>
+          <Navbar></Navbar>
           <Route exact path='/' component={Home}/>
           <Route exact path='/about' component={About}/>
-          <Route exact path='/channels/:channelId' component={ChannelDetails}/>
-          <Route exact path='/channels/program/:programId' component={ProgramPage}/>
+          <Route exact path='/channel/getbyid/:channelId' component={ChannelDetails}/>
+          <Route exact path='/program/getbyid/:programId' component={ProgramPage}/>
+          <Route exact path='/programs/getbycategoryid/:categoryId' component={ChosenPrograms}/>
       </ChannelContextProvider>
     </BrowserRouter>
     </div>

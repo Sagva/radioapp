@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
 import LastPublished from '../components/LastPublished.js'
+import styles from '../styles/ChannelList.module.css'
 
 
 const ProgramPage = (props) => {
     const programId = props.match.params.programId
-    console.log(programId);
-    
     const {getProgrambyId } = useContext(ChannelContext);
     const [program, setProgram] = useState(null);
     
@@ -22,7 +21,7 @@ const ProgramPage = (props) => {
     },[programId])
 
     useEffect( ()=> {
-        console.log(program);
+        console.log(`program is`, program);
         
     },[program])
 
@@ -33,11 +32,11 @@ const ProgramPage = (props) => {
         content = <div>
             
             <h2 className='text-center'>{program.name}</h2>
-            <div className='d-sm-flex'>
-                <div className='mx-3 my-2'><img className='img-fluid img-thumbnail' src={program.programimage} alt={program.name}/></div>
+            <div className='d-sm-flex container border-top pt-4'>
+                <div className={`${styles.imageBox} mx-3 my-2 flex-shrink-0`}><img className='img-fluid img-thumbnail' src={program.programimage} alt={program.name}/></div>
                 <div>
-                    { program.channel.name !='[No channel]' && <p className='mx-3 my-2'><b>Kanal:</b> {program.channel.name}</p>}
-                    <p className='mx-3 my-2'><b>Kategori:</b> {program.programcategory.name}</p>
+                    { program.channel.name !=='[No channel]' && <p className='mx-3 my-2'><b>Kanal:</b> {program.channel.name}</p>}
+                    { program.programcategory.name && <p className='mx-3 my-2'><b>Kategori:</b> {program.programcategory.name}</p>}
                     { program.broadcastinfo && <p className='mx-3 my-2'><b>Sänds:</b> {program.broadcastinfo}</p>}
                     <p className='mx-3 my-2'><b>Beskrivning:</b> {program.description}</p>
                 </div>

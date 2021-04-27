@@ -1,34 +1,17 @@
-
-.wrapper{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
+.heading {
+    color: #333 !important;
 }
+.channelList{
 
-.channelBox {
+    background-color: rgba(238, 238, 238, 0.486);
+}
+.imageBox {
     width: 250px;
-    margin: 20px;
+    margin: 10px;
     cursor: pointer;
 }
 
 
-.channelBox img {
+.imageBox img {
     width: 100%;
-}
-
-
-
-@media (min-width: 992px) {
-    .wrapper {
-        justify-content: space-evenly;
-    }
-}
-@media (min-width: 1200px) {
-    .wrapper {
-        justify-content: space-between;
-    }
 }

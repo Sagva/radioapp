@@ -41,7 +41,7 @@ const ChannelSchedule = (props) => {
     }
     const history = useHistory()
     const redirectToProgramPage =(programId) => {
-        history.push(`/channels/program/${programId}`)
+        history.push(`/program/getbyid/${programId}`)
     }
 
     let content = ''
@@ -49,7 +49,7 @@ const ChannelSchedule = (props) => {
         
         
         content = <div>
-            <h2>{schedule[0].channel.name} Tablå</h2>
+            <h2>Tablå</h2>
             <div>
                 <label className={styles.dateLabel} htmlFor="date"><b>Välj datum:</b></label>
 

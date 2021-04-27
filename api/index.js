@@ -2,7 +2,7 @@ const express = require('express')
 const path = require("path");
 const channelRoutes = require('./routes/channelRoutes')
 const port = 3001
-const prefixRoute = '/api/v1/channels'
+const prefixRoute = '/api/v1'
 
 // Server setup
 const server = express()

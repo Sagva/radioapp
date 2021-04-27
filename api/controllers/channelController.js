@@ -5,7 +5,7 @@ const paginationFalse = 'pagination=false'
 const utils = require('../core/utilities')
 
 const getAllChannels = async (req,res) => {
-    
+    console.log('startar getAllChannels');
     let allChannels = await fetch(`http://api.sr.se/api/v2/channels/?${json}&${paginationFalse}`)
     if(!allChannels.ok){
         throw new Error(allChannels.status)
@@ -48,12 +48,21 @@ const getChannelPrograms = async (req,res) => {
 }
 const getProgramById = async (req,res) => {
     let program = await fetch(`http://api.sr.se/api/v2/programs/${req.params.programId}?${json}&${paginationFalse}`)
-    
     program = await program.json()
-
     res.json(program)
 }
+const getAllCategories = async (req,res) => {
+    let categories  = await fetch(`http://api.sr.se/api/v2/programcategories/?${json}&${paginationFalse}`)
+    categories = await categories.json()
+    res.json(categories)
+}
 
+const getProgramsByCategoryId = async (req,res) => {
+    console.log(`category id is`, req.params.categotyid);
+    let category = await fetch(`http://api.sr.se/api/v2/programs/index?programcategoryid=${req.params.categotyid}&${json}&pagination=true`)
+    category = await category.json()
+    res.json(category)
+}
 
 
 module.exports = {
@@ -62,5 +71,6 @@ module.exports = {
     getChannelSchedule,
     getChannelPrograms,
     getProgramById,
-    
+    getAllCategories,
+    getProgramsByCategoryId
 }
