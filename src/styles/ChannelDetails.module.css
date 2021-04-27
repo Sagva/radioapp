@@ -1,6 +1,3 @@
-h2 {
-    padding: 20px 10px !important;
-}
 .channelDetails {
     background-color: #333;
     background-color: white;
@@ -20,7 +17,6 @@ h2 {
  align-items: center;
 }
 .schedAndProgBlock {
-    /* background-color: white; */
     color: #333;
 }
 
@@ -38,10 +34,6 @@ h2 {
 }
 
 .btnChooseComp {
-    /* background-color: transparent !important;
-    border: none; */
-    /* margin: 0 auto; */
-    
     margin-right: 10px;
     padding: 8px 20px;
     font-size: 18px;
