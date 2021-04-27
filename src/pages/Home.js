@@ -10,7 +10,6 @@ const HomePage = () => {
             <CategoriesList/>
             
             <ChannelList/>
-            <ChannelPrograms/>
         </div>
     );
 };

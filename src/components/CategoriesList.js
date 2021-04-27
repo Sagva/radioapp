@@ -24,7 +24,7 @@ const CategoriesList = () => {
         let fetchedCategories = categories.programcategories
         
         content = <div className={`container`}>
-                  <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                  <div className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 g-lg-3">
                   {fetchedCategories.map((category, i) => (
                         <div className="col" onClick={()=>redirectToPragramsPage(category.id)}>
                             <p key={i} className={styles.categoryParag}>{category.name}</p>
