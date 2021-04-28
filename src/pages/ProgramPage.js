@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
-import LastPublished from '../components/LastPublished.js'
 import styles from '../styles/ChannelList.module.css'
 
 
@@ -36,7 +35,7 @@ const ProgramPage = (props) => {
                 <div className={`${styles.imageBox} mx-3 my-2 flex-shrink-0`}><img className='img-fluid img-thumbnail' src={program.programimage} alt={program.name}/></div>
                 <div>
                     { program.channel.name !=='[No channel]' && <p className='mx-3 my-2'><b>Kanal:</b> {program.channel.name}</p>}
-                    { program.programcategory.name && <p className='mx-3 my-2'><b>Kategori:</b> {program.programcategory.name}</p>}
+                    { program.programcategory && <p className='mx-3 my-2'><b>Kategori:</b> {program.programcategory.name}</p>}
                     { program.broadcastinfo && <p className='mx-3 my-2'><b>Sänds:</b> {program.broadcastinfo}</p>}
                     <p className='mx-3 my-2'><b>Beskrivning:</b> {program.description}</p>
                 </div>

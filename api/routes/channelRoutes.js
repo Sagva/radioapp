@@ -14,7 +14,7 @@ router.get('/allprograms/:channelId/', channelController.getChannelPrograms)
 //url for checking in the browser http://localhost:3000/api/v1/allprograms/132
 
 router.get('/program/getbyid/:programId/', channelController.getProgramById)
-//url for checking in the browser
+//url for checking in the browser  http://localhost:3000/api/v1/program/getbyid/519
 
 router.get('/programcategories/getall/:dummyId', channelController.getAllCategories)
 //url for checking in the browser 

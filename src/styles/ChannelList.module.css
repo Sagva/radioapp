@@ -9,9 +9,25 @@
     width: 250px;
     margin: 10px;
     cursor: pointer;
+    position: relative;
 }
 
 
 .imageBox img {
     width: 100%;
+}
+.btnLike {
+    color: #fff;
+    border: none;
+    background-color: rgba(70, 69, 69, 0.787);
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.heartIcon{
+    font-size: 26px;
+    
+    
 }

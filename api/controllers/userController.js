@@ -74,6 +74,42 @@ const register = (req,res)=> {
             })
         }
     })
+}
+
+const registerChannelsLike = (req,res)=> {
+    let channelsLike = req.body
+    console.log(`channelsLike info backend`, channelsLike);
+    //before trying to register the user, check if the user alredy exist
+    let query = `SELECT * FROM likedChannels WHERE channelId = $channelId AND userId = $userId`
+
+    let params = {
+        $channelId: channelsLike.channelId,
+        $userId: channelsLike.userId,
+    }
+    db.get(query, params, (err, likeExist) => {
+        if(likeExist) {
+            res.status(400).json({error: 'This channel is already liked'})
+            
+        } else {
+            console.log(`in the else state, after checking exesting`);
+        
+            //add to dataBase
+            query = `INSERT INTO likedChannels (channelId, userId) VALUES ($channelId, $userId)`
+            params = {
+                $channelId: channelsLike.channelId,
+                $userId: channelsLike.userId
+            }
+            db.get("PRAGMA foreign_keys = ON")//forses SQlite to validate foreign key in order to not add likes from users which dosen't exist
+            db.run(query, params, function(err) {
+                if(err) {
+                    console.log(`in the error if`, err);
+                    res.status(400).json({error: err})
+                    return
+                }
+                res.json({success: "Channel regestered in likedChannel successfully"})
+            })
+        }
+    })
     
 }
 
@@ -82,5 +118,6 @@ module.exports = {
     whoami,
     login,
     logout,
-    register
+    register,
+    registerChannelsLike
 };

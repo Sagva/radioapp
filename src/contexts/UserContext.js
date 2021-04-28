@@ -5,15 +5,26 @@ export const UserContext = createContext();
 const UserProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  //activeUser sets either at first rendering or at Login page, 
+  //format of activeUser is {id: 3, email: "www@com.com", userName: "www"}
+  const [activeUser, setActiveUser] = useState(false); 
 
   useEffect(() => {
     whoAmI()
   }, []);
 
+  
   const whoAmI = async () => {
     let who = await fetch("/api/v1/users/whoami");
-    who = await who.json();
-    console.log('inside whoami', who);
+    who = await who.json()
+    .then(who => {
+      if(!who) {
+        return
+      }
+      setIsLoggedIn(true);
+      setActiveUser(who)
+    })
+    .catch(err => console.log(err))
     
   };
 
@@ -53,15 +64,30 @@ const UserProvider = (props) => {
     return result;
   };
 
-  
- 
+  const registerChannelsLike = async (userAndChannelId) => { //expecting format { userId: 2, channelId: 132}
+    let result = await fetch("/api/v1/users/likedchannels", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userAndChannelId),
+    });
+    result = await result.json();
+    console.log('inside register function', userAndChannelId);
+    console.log('inside register function', result);
+    return result;
+  };
 
   const values = {
     isLoggedIn,
     setIsLoggedIn,
     login,
     logout,
-    register
+    register,
+    setActiveUser,
+    activeUser,
+    registerChannelsLike,
+    whoAmI
   };
 
   return (

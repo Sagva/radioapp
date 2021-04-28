@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import styles from '../styles/Login.module.css'
@@ -6,7 +6,7 @@ import styles from '../styles/Login.module.css'
 
 const Login = () => {
     const history = useHistory()
-    const { setIsLoggedIn, login } = useContext(UserContext);
+    const { setIsLoggedIn, login, setActiveUser } = useContext(UserContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,7 +30,9 @@ const Login = () => {
         let result = await login(inputedData);
         
         if (result.success) {
+            console.log(`inside login in frontend, result.loggedInUser`, result.loggedInUser);
             setIsLoggedIn(true)
+            setActiveUser(result.loggedInUser)
             history.push("/");
         }
     }

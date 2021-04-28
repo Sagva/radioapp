@@ -35,6 +35,10 @@
 }
 
 
+
+
+
+
 .btnAuthorisation {
     margin-right: 10px;
     
@@ -58,7 +62,7 @@
 
 @media (min-width: 576px) {
     .brandBox {
-        width: 120px;
+        width: 150px;
         
     }
     .navbar ul {

@@ -15,12 +15,22 @@ const ChannelDetails = (props) => {
     const {getChannelbyId } = useContext(ChannelContext);
     
    
-    useEffect(async ()=> {
+    // useEffect(async ()=> {
         
-        let channel = await getChannelbyId(channelId)
-        setOneChannel(channel)
+    //     let channel = await getChannelbyId(channelId)
+    //     setOneChannel(channel)
         
-    }, [channelId])
+    // }, [channelId])
+
+    useEffect( ()=> {
+        const channelGetting = async () => {
+            let channel = await getChannelbyId(channelId)
+            setOneChannel(channel)
+
+        }
+        channelGetting()
+        
+    },[channelId])
 
     
     const chooseComponentToRender = (e) => {

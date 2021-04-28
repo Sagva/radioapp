@@ -1,20 +1,40 @@
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { ChannelContext } from "../contexts/ChannelContext";
+import { UserContext } from "../contexts/UserContext";
 import styles from "../styles/ChannelList.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
 const ChannelList = () => {
     const history = useHistory()
   
     const { channels } = useContext(ChannelContext);
-
-    // useEffect(() => {
-    //     console.log(`channels are`, channels)
-        
-    //   }, [channels]);
+    const { registerChannelsLike, activeUser } = useContext(UserContext);
     
-   
+
+    useEffect(() => {
+        console.log(`activeUser is`, activeUser)
+        
+      }, [activeUser]);
+    
+    const handleLikeClick = async (e, channelId) => {
+        console.log(`channelId of liked channel`, channelId, `by user with id ${activeUser.id}`) //{ userId: 2, channelId: 132}
+        let userAndChannelId = { 
+            userId: activeUser.id,
+            channelId: channelId
+        }
+        let result = await registerChannelsLike(userAndChannelId)
+        .then(result => {
+            if(result.success) {
+                document.querySelector(`#btn${channelId}`).children[0].style.color = 'red'
+                console.log(`isSuccess`, result)
+            }
+        })
+       
+    }
+
     let content = ''
 
     if(channels) {
@@ -23,9 +43,14 @@ const ChannelList = () => {
         content = <div className='container d-flex flex-wrap justify-content-center justify-content-lg-evenly justify-content-xl-between py-3'> 
                     
                         {fetchedChannels.map((ch, i) => (
-                        <div key={i} className={styles.imageBox} onClick={() => history.push(`/channel/getbyid/${ch.id}`)}>
-                            <img  src={ch.image} alt={`${ch.channeltype} ${ch.name}`}></img>
-                        </div>  
+                           <div key={i}>
+                            <div className={styles.imageBox} >
+                                <button onClick={(e)=> handleLikeClick(e, ch.id)} type='button' id={`btn${ch.id}`} className={styles.btnLike}>
+                                    <FontAwesomeIcon icon={faHeart} className={`${styles.heartIcon}`}/>
+                                </button>
+                                <img onClick={() => history.push(`/channel/getbyid/${ch.id}`)} src={ch.image} alt={`${ch.channeltype} ${ch.name}`}></img>
+                            </div>  
+                           </div>
                         ))}
                      
                     </div>

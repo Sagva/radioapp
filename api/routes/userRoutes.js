@@ -12,5 +12,7 @@ router.post('/login', userController.login)
 
 router.get('/logout', userController.logout)
 router.post('/register', userController.register)
+router.post('/likedchannels', userController.registerChannelsLike)
+
 
 module.exports = router;

@@ -5,9 +5,8 @@ import styles from '../styles/Login.module.css'
 
 const Register = () => {
     const history = useHistory()
-    const [registerMessage, setRegisterMessage] = useState('')
     
-    const { register, login, setIsLoggedIn } = useContext(UserContext);
+    const { register, login, setIsLoggedIn, setActiveUser, whoAmI } = useContext(UserContext);
 
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
@@ -23,11 +22,6 @@ const Register = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
-    
-
-    useEffect(() => {
-
-    }, [registerMessage])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -43,24 +37,21 @@ const Register = () => {
         
         if(result.error) {
             console.log('inside error if', result.error);
-           
-            setRegisterMessage(result.error)
+            
         } else if(result.success) {
-            setRegisterMessage(`${result.success} Efter 5 sec you will be redirected to Home page`)
+            
             inputedData = {
                 email,
                 password
             };
-            setTimeout(async ()=> {
-
-                result = await login(inputedData);
-                
-                if (result.success) {
-                    setIsLoggedIn(true)
-                    history.push("/");
-                }
-            }, 5000)
+            result = await login(inputedData);
             
+            if (result.success) {
+                setIsLoggedIn(true)
+                setActiveUser(false)
+                whoAmI()
+                history.push("/");
+            }
         }
     }
 

@@ -6,8 +6,10 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 function Navbar () {
-    const { setIsLoggedIn, isLoggedIn, logout } = useContext(UserContext);
+    const { setIsLoggedIn, isLoggedIn, logout, } = useContext(UserContext);
     console.log(`is logged in: ${isLoggedIn}`);
+
+    
 
     const handkeLogoutClick = () => {
         console.log('Logout was clicked')
@@ -22,11 +24,12 @@ function Navbar () {
                 <img className={styles.brandLogo} src={Logo} alt="Logo"/>
             </div>
             <ul>
-                    <li><NavLink to='/' className={styles.navItem} >Kanaler</NavLink></li>
+                
+                    <li><NavLink exact to='/' className={styles.navItem} activeStyle={{color: '#BBE42A', textDecoration: 'none'}} >Kanaler</NavLink></li>
 
                 { isLoggedIn && 
                     <div className='d-flex '>
-                        <li><NavLink to='#' className={styles.navItem}> Favoriter </NavLink></li>
+                        <li><NavLink exact  to='/favorites' className={styles.navItem} activeStyle={{color: '#BBE42A', textDecoration: 'none'}}> Favoriter </NavLink></li>
                         <li><NavLink to='/' className={styles.navItem}  onClick={handkeLogoutClick}>Logout</NavLink></li>
                     </div>
                 }
