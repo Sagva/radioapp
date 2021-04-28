@@ -41,7 +41,7 @@ const ProgramPage = (props) => {
                     <p className='mx-3 my-2'><b>Beskrivning:</b> {program.description}</p>
                 </div>
             </div>
-            <LastPublished/>
+            
         </div>
             
         

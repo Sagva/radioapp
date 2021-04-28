@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import styles from '../styles/Login.module.css'
 
 
 const Login = () => {
@@ -27,8 +28,7 @@ const Login = () => {
             password
         };
         let result = await login(inputedData);
-        console.log('Inside login func in frontend Login component', inputedData);
-        console.log(result);
+        
         if (result.success) {
             setIsLoggedIn(true)
             history.push("/");
@@ -36,14 +36,24 @@ const Login = () => {
     }
   
   return (
-    <div >
-        <div >
-            <h3>Login here with your data</h3>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <input type="text" id="email" placeholder='email' onChange={(e) => handleEmailChange(e)}/>
-                <input type="text" id="password" placeholder='password'onChange={(e) => handlePasswordChange(e)}/>
-                <button type='submit' name='login' >Logga in</button>
-            </form>
+    <div className={`${styles.loginWrapper} py-2`}>
+        <div className='container'>
+            <h1 className='my-4 text-center'>Inloggning</h1>
+            <div className={styles.loginBlock}>
+                <form onSubmit={(e) => handleSubmit(e)} className='pb-1'>
+                    <div className="mb-3">
+                        <label for="email" className="form-label">Email address</label>
+                        <input placeholder='email' type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={(e) => handleEmailChange(e)}/>
+                        
+                    </div>
+                    <div className="mb-4">
+                        <label for="password" className="form-label">Password</label>
+                        <input placeholder='password' type="password" className="form-control" id="password" onChange={(e) => handlePasswordChange(e)}/>
+                    </div>
+                    
+                    <div className='text-center'><button type="submit" className='btnBrand'>Logga in</button></div>
+                </form>
+            </div>
         </div>
     </div>
   );

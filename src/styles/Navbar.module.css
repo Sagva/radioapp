@@ -1,5 +1,3 @@
-
-
 .brandBox {
     width: 100px;
     display: flex;
@@ -60,7 +58,7 @@
 
 @media (min-width: 576px) {
     .brandBox {
-        width: 150px;
+        width: 120px;
         
     }
     .navbar ul {

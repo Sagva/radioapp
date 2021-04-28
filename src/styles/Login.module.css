@@ -1,0 +1,9 @@
+.loginWrapper{
+    background-color: #333;
+    color: #fff;
+}
+
+.loginBlock {
+    max-width: 500px;
+    margin: 0 auto;
+}
