@@ -14,5 +14,6 @@ router.get('/logout', userController.logout)
 router.post('/register', userController.register)
 router.post('/likedchannels', userController.registerChannelsLike)
 router.get('/likedchannels/getbyuserid/:userId', userController.getLikedChannelsByUserId)
+router.delete('/likedchannels/delete', userController.deleteChannelsLike)
 
 module.exports = router;

@@ -12,7 +12,7 @@ const ChannelList = () => {
   
     const { channels } = useContext(ChannelContext);
 
-    const { registerChannelsLike, activeUser, isLoggedIn, markedChannels } = useContext(UserContext);
+    const { registerChannelsLike, activeUser, isLoggedIn, markedChannels, deleteChannelsLike } = useContext(UserContext);
 
     useEffect(() => {
         console.log(`activeUser is`, activeUser)
@@ -21,19 +21,29 @@ const ChannelList = () => {
 
     
     
-    const handleLikeClick = async (channelId) => {
-        console.log(`channelId of liked channel`, channelId, `by user with id ${activeUser.id}`) //{ userId: 2, channelId: 132}
+    const handleLikeClick = async (isLiked, channelId) => {
+        console.log(`channelId is`, channelId, `user id is ${activeUser.id}`, `isLiked `, isLiked) //{ userId: 2, channelId: 132}
         let userAndChannelId = { 
             userId: activeUser.id,
             channelId: channelId
         }
-        let result = await registerChannelsLike(userAndChannelId)
-        .then(result => {
-            if(result.success) {
-                document.querySelector(`#btn${channelId}`).children[0].style.color = 'red'
-                console.log(`isSuccess`, result)
-            }
-        })
+        if(!isLiked) {
+            console.log(`isLiked`, isLiked);
+            let result = await registerChannelsLike(userAndChannelId)
+            .then(result => {
+                if(result.success) {
+                    document.querySelector(`#btn${channelId}`).children[0].style.color = 'red'
+                }
+            })
+        } else {
+            console.log(`inside else would delete like`);
+            let result = await deleteChannelsLike(userAndChannelId)
+            .then(result => {
+                if(result.success) {
+                    document.querySelector(`#btn${channelId}`).children[0].style.color = 'white'
+                }
+            })
+        }
        
     }
 
@@ -47,7 +57,7 @@ const ChannelList = () => {
                         {channelsToRender.map((ch, i) => (
                            <div key={i}>
                             <div className={styles.imageBox} >
-                                { isLoggedIn && <button onClick={()=> handleLikeClick(ch.id)} type='button' id={`btn${ch.id}`} className={styles.btnLike}>
+                                { isLoggedIn && <button onClick={()=> handleLikeClick(ch.isLiked, ch.id)} type='button' id={`btn${ch.id}`} className={styles.btnLike}>
                                     <FontAwesomeIcon icon={faHeart} 
                                         className={`${styles.heartIcon}`} 
                                         style={ ch.isLiked ? { color: 'red'} : {color : 'white'} } 

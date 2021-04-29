@@ -91,6 +91,7 @@ const UserProvider = (props) => {
     return result;
   };
 
+  //add liked channel to DB
   const registerChannelsLike = async (userAndChannelId) => { //expecting format { userId: 2, channelId: 132}
     let result = await fetch("/api/v1/users/likedchannels", {
       method: "POST",
@@ -100,11 +101,11 @@ const UserProvider = (props) => {
       body: JSON.stringify(userAndChannelId),
     });
     result = await result.json();
-    console.log('inside register function', userAndChannelId);
     console.log('inside register function', result);
     return result;
   };
 
+  //getting liked channes from DB
   const getLikedChannelsByUserId = async (userid) => {
     
     let likedChannels = await fetch(`/api/v1/users/likedchannels/getbyuserid/${userid}`);
@@ -112,8 +113,9 @@ const UserProvider = (props) => {
     setLikedChannels(likedChannels.likedChannels)
   };
 
+  //take one channel id from SR API and compare it with liked channel from DB 
   const isChannelLiked = (channelId, likedChannels) => {
-    //likedChannels [{channelId: 132, userId: 8}, {channelId: 213, userId: 8}...]
+    //likedChannels from DB [{channelId: 132, userId: 8}, {channelId: 213, userId: 8}...]
     
     for (let i=0; i<likedChannels.length; i++) {
       if (likedChannels[i].channelId === channelId) {
@@ -123,6 +125,7 @@ const UserProvider = (props) => {
     return false
   }
 
+  //take all channels from SR API, check every channel Id if it liked or not
   const markLikedChannel = () => {
       let markedChannel = channels.map((channel) =>{ 
           let isLiked = isChannelLiked(channel.id, likedChannels) //returns true or false
@@ -130,6 +133,20 @@ const UserProvider = (props) => {
       })
       setMarkedChannels(markedChannel)
   }
+
+  //delete liked channel to DB
+  const deleteChannelsLike = async (userAndChannelId) => { //expecting format { userId: 2, channelId: 132}
+    let result = await fetch("/api/v1/users/likedchannels/delete", {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userAndChannelId),
+    });
+    result = await result.json();
+    console.log('inside deleteChannelsLike function', result);
+    return result;
+  };
   
 
   const values = {
@@ -142,7 +159,8 @@ const UserProvider = (props) => {
     activeUser,
     registerChannelsLike,
     whoAmI,
-    markedChannels
+    markedChannels,
+    deleteChannelsLike
   };
 
   return (
