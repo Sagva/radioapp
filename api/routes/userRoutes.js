@@ -13,6 +13,6 @@ router.post('/login', userController.login)
 router.get('/logout', userController.logout)
 router.post('/register', userController.register)
 router.post('/likedchannels', userController.registerChannelsLike)
-
+router.get('/likedchannels/getbyuserid/:userId', userController.getLikedChannelsByUserId)
 
 module.exports = router;

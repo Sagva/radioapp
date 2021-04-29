@@ -9,9 +9,20 @@ const UserProvider = (props) => {
   //format of activeUser is {id: 3, email: "www@com.com", userName: "www"}
   const [activeUser, setActiveUser] = useState(false); 
 
+  const [likedChannels, setLikedChannels] = useState(false); 
+
   useEffect(() => {
     whoAmI()
   }, []);
+
+  useEffect(() => {
+    console.log(`activeUser.id is`, activeUser.id);
+    getLikedChannelsByUserId(activeUser.id)
+  }, [activeUser]);
+
+  useEffect(() => {
+    console.log(`liked channels are `, likedChannels)
+  }, [likedChannels]);
 
   
   const whoAmI = async () => {
@@ -77,6 +88,16 @@ const UserProvider = (props) => {
     console.log('inside register function', result);
     return result;
   };
+
+  const getLikedChannelsByUserId = async (userid) => {
+    console.log(`inside getLikedChannelsByUserId`)
+    let likedChannel = await fetch(`/api/v1/users/likedchannels/getbyuserid/${userid}`);
+    likedChannel = await likedChannel.json();
+    setLikedChannels(likedChannel)
+  };
+
+ 
+  
 
   const values = {
     isLoggedIn,

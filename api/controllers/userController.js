@@ -78,8 +78,8 @@ const register = (req,res)=> {
 
 const registerChannelsLike = (req,res)=> {
     let channelsLike = req.body
-    console.log(`channelsLike info backend`, channelsLike);
-    //before trying to register the user, check if the user alredy exist
+    
+    //before trying to register the like, check if the like alredy exist
     let query = `SELECT * FROM likedChannels WHERE channelId = $channelId AND userId = $userId`
 
     let params = {
@@ -112,6 +112,25 @@ const registerChannelsLike = (req,res)=> {
     })
     
 }
+const getLikedChannelsByUserId = (req,res)=> {
+    let query = `SELECT * FROM likedChannels WHERE userId = $userId`
+    let params = {$userId: req.params.userId}
+    db.all(query, params, (err, likedChannels) => {
+        if(!likedChannels) {
+            res.status(400).json({error: 'There are no liked channels'})
+        } else {
+            res.json({
+                success: "Liked channels are obtained", 
+                likedChannels: likedChannels
+            })
+                return
+
+        }
+    })
+    
+}
+
+
 
 // Export the differents route handlers
 module.exports = {
@@ -119,5 +138,6 @@ module.exports = {
     login,
     logout,
     register,
-    registerChannelsLike
+    registerChannelsLike,
+    getLikedChannelsByUserId
 };
