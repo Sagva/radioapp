@@ -1,27 +1,43 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { ChannelContext } from "../contexts/ChannelContext";
 
 export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { channels } = useContext(ChannelContext)
 
   //activeUser sets either at first rendering or at Login page, 
   //format of activeUser is {id: 3, email: "www@com.com", userName: "www"}
   const [activeUser, setActiveUser] = useState(false); 
 
+  //likedChannels from DB
   const [likedChannels, setLikedChannels] = useState(false); 
+
+  //All channels from SVT API, but marked if some channel is liked
+  const [markedChannels, setMarkedChannels] = useState(false); 
 
   useEffect(() => {
     whoAmI()
   }, []);
 
   useEffect(() => {
-    console.log(`activeUser.id is`, activeUser.id);
     getLikedChannelsByUserId(activeUser.id)
   }, [activeUser]);
 
   useEffect(() => {
-    console.log(`liked channels are `, likedChannels)
+    console.log(`isLoggedIn`, isLoggedIn);
+    
+    if(isLoggedIn && channels && likedChannels) {
+      console.log(`activeUser.id is`, activeUser.id);
+      
+      markLikedChannel()
+
+    }
+  }, [isLoggedIn, channels, likedChannels]);
+
+  useEffect(() => {
+    console.log(`liked channels from DB are `, likedChannels)
   }, [likedChannels]);
 
   
@@ -90,13 +106,30 @@ const UserProvider = (props) => {
   };
 
   const getLikedChannelsByUserId = async (userid) => {
-    console.log(`inside getLikedChannelsByUserId`)
-    let likedChannel = await fetch(`/api/v1/users/likedchannels/getbyuserid/${userid}`);
-    likedChannel = await likedChannel.json();
-    setLikedChannels(likedChannel)
+    
+    let likedChannels = await fetch(`/api/v1/users/likedchannels/getbyuserid/${userid}`);
+    likedChannels = await likedChannels.json();
+    setLikedChannels(likedChannels.likedChannels)
   };
 
- 
+  const isChannelLiked = (channelId, likedChannels) => {
+    //likedChannels [{channelId: 132, userId: 8}, {channelId: 213, userId: 8}...]
+    
+    for (let i=0; i<likedChannels.length; i++) {
+      if (likedChannels[i].channelId === channelId) {
+        return true
+      }
+    }
+    return false
+  }
+
+  const markLikedChannel = () => {
+      let markedChannel = channels.map((channel) =>{ 
+          let isLiked = isChannelLiked(channel.id, likedChannels) //returns true or false
+          return {...channel, isLiked: isLiked}
+      })
+      setMarkedChannels(markedChannel)
+  }
   
 
   const values = {
@@ -108,7 +141,8 @@ const UserProvider = (props) => {
     setActiveUser,
     activeUser,
     registerChannelsLike,
-    whoAmI
+    whoAmI,
+    markedChannels
   };
 
   return (

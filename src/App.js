@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
     <BrowserRouter>
-    <UserProvider>
       <ChannelContextProvider>
+        <UserProvider>
           <Navbar></Navbar>
           <Route exact path='/' component={Home}/>
           <Route exact path='/channel/getbyid/:channelId' component={ChannelDetails}/>
@@ -22,8 +22,8 @@ function App() {
           <Route exact path='/programs/getbycategoryid/:categoryId' component={ChosenPrograms}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
+        </UserProvider>
       </ChannelContextProvider>
-      </UserProvider>
     </BrowserRouter>
     
     </div>

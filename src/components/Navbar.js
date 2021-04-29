@@ -7,10 +7,7 @@ import { UserContext } from "../contexts/UserContext";
 
 function Navbar () {
     const { setIsLoggedIn, isLoggedIn, logout, } = useContext(UserContext);
-    console.log(`is logged in: ${isLoggedIn}`);
-
     
-
     const handkeLogoutClick = () => {
         console.log('Logout was clicked')
         logout()

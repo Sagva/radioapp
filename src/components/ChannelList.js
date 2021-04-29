@@ -11,15 +11,17 @@ const ChannelList = () => {
     const history = useHistory()
   
     const { channels } = useContext(ChannelContext);
-    const { registerChannelsLike, activeUser } = useContext(UserContext);
-    
+
+    const { registerChannelsLike, activeUser, isLoggedIn, markedChannels } = useContext(UserContext);
 
     useEffect(() => {
         console.log(`activeUser is`, activeUser)
         
-      }, [activeUser]);
+    }, [activeUser]);
+
     
-    const handleLikeClick = async (e, channelId) => {
+    
+    const handleLikeClick = async (channelId) => {
         console.log(`channelId of liked channel`, channelId, `by user with id ${activeUser.id}`) //{ userId: 2, channelId: 132}
         let userAndChannelId = { 
             userId: activeUser.id,
@@ -38,16 +40,19 @@ const ChannelList = () => {
     let content = ''
 
     if(channels) {
-        let fetchedChannels = channels.channels
+        let channelsToRender = markedChannels ? markedChannels : channels
         
         content = <div className='container d-flex flex-wrap justify-content-center justify-content-lg-evenly justify-content-xl-between py-3'> 
                     
-                        {fetchedChannels.map((ch, i) => (
+                        {channelsToRender.map((ch, i) => (
                            <div key={i}>
                             <div className={styles.imageBox} >
-                                <button onClick={(e)=> handleLikeClick(e, ch.id)} type='button' id={`btn${ch.id}`} className={styles.btnLike}>
-                                    <FontAwesomeIcon icon={faHeart} className={`${styles.heartIcon}`}/>
-                                </button>
+                                { isLoggedIn && <button onClick={()=> handleLikeClick(ch.id)} type='button' id={`btn${ch.id}`} className={styles.btnLike}>
+                                    <FontAwesomeIcon icon={faHeart} 
+                                        className={`${styles.heartIcon}`} 
+                                        style={ ch.isLiked ? { color: 'red'} : {color : 'white'} } 
+                                    />
+                                </button>}
                                 <img onClick={() => history.push(`/channel/getbyid/${ch.id}`)} src={ch.image} alt={`${ch.channeltype} ${ch.name}`}></img>
                             </div>  
                            </div>
