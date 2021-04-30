@@ -6,9 +6,11 @@ const port = 3001
 
 const channelRoutes = require('./routes/channelRoutes')
 const userRoutes = require('./routes/userRoutes')
+const likesRoutes = require('./routes/likesRoutes')
 
 const prefixRoute = '/api/v1'
 const userPrefix = "/api/v1/users";
+const likesPrefix = "/api/v1/likes";
 
 // Server setup
 const server = express()
@@ -33,6 +35,7 @@ server.use(
 // Routes setup
 server.use(prefixRoute, channelRoutes)
 server.use(userPrefix, userRoutes);
+server.use(likesPrefix, likesRoutes);
 
 // Serve static files, makes the frontend files "available" to the backend
 server.use(express.static(path.join(__dirname, "../build")));

@@ -93,7 +93,7 @@ const UserProvider = (props) => {
 
   //add liked channel to DB
   const registerChannelsLike = async (userAndChannelId) => { //expecting format { userId: 2, channelId: 132}
-    let result = await fetch("/api/v1/users/likedchannels", {
+    let result = await fetch("/api/v1/likes/likedchannels", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -108,7 +108,7 @@ const UserProvider = (props) => {
   //getting liked channes from DB for particular user
   const getLikedChannelsByUserId = async (userid) => {
     
-    let likedChannels = await fetch(`/api/v1/users/likedchannels/getbyuserid/${userid}`);
+    let likedChannels = await fetch(`/api/v1/likes/likedchannels/getbyuserid/${userid}`);
     likedChannels = await likedChannels.json();
     setLikedChannels(likedChannels.likedChannels)
   };
@@ -138,7 +138,7 @@ const UserProvider = (props) => {
   //delete liked channel to DB
   const deleteChannelsLike = async (userAndChannelId) => { //expecting format { userId: 2, channelId: 132}
     console.log(`userAndChannelId`, userAndChannelId)
-    let result = await fetch("/api/v1/users/likedchannels/delete", {
+    let result = await fetch("/api/v1/likes/likedchannels/delete", {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
