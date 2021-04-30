@@ -105,7 +105,7 @@ const UserProvider = (props) => {
     return result;
   };
 
-  //getting liked channes from DB
+  //getting liked channes from DB for particular user
   const getLikedChannelsByUserId = async (userid) => {
     
     let likedChannels = await fetch(`/api/v1/users/likedchannels/getbyuserid/${userid}`);
@@ -113,7 +113,8 @@ const UserProvider = (props) => {
     setLikedChannels(likedChannels.likedChannels)
   };
 
-  //take one channel id from SR API and compare it with liked channel from DB 
+  //take one channel id from SR API and compare it with liked channel for particular user from DB 
+  //returns either true or false 
   const isChannelLiked = (channelId, likedChannels) => {
     //likedChannels from DB [{channelId: 132, userId: 8}, {channelId: 213, userId: 8}...]
     
@@ -125,7 +126,7 @@ const UserProvider = (props) => {
     return false
   }
 
-  //take all channels from SR API, check every channel Id if it liked or not
+  //take all channels from SR API and for every channel Id run function isChannelLiked for checking if it liked or not
   const markLikedChannel = () => {
       let markedChannel = channels.map((channel) =>{ 
           let isLiked = isChannelLiked(channel.id, likedChannels) //returns true or false
@@ -136,6 +137,7 @@ const UserProvider = (props) => {
 
   //delete liked channel to DB
   const deleteChannelsLike = async (userAndChannelId) => { //expecting format { userId: 2, channelId: 132}
+    console.log(`userAndChannelId`, userAndChannelId)
     let result = await fetch("/api/v1/users/likedchannels/delete", {
       method: "DELETE",
       headers: {
@@ -147,8 +149,8 @@ const UserProvider = (props) => {
     console.log('inside deleteChannelsLike function', result);
     return result;
   };
-  
 
+  
   const values = {
     isLoggedIn,
     setIsLoggedIn,
@@ -160,7 +162,10 @@ const UserProvider = (props) => {
     registerChannelsLike,
     whoAmI,
     markedChannels,
-    deleteChannelsLike
+    deleteChannelsLike,
+    setMarkedChannels,
+    markLikedChannel,
+    getLikedChannelsByUserId
   };
 
   return (

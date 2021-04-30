@@ -93,10 +93,7 @@ const registerChannelsLike = (req,res)=> {
             
             //add to dataBase
             query = `INSERT INTO likedChannels (channelId, userId) VALUES ($channelId, $userId)`
-            params = {
-                $channelId: channelsLike.channelId,
-                $userId: channelsLike.userId
-            }
+            
             db.get("PRAGMA foreign_keys = ON")//forses SQlite to validate foreign key in order to not add likes from users which dosen't exist
             db.run(query, params, function(err) {
                 if(err) {
@@ -107,7 +104,6 @@ const registerChannelsLike = (req,res)=> {
             })
         }
     })
-    
 }
 const getLikedChannelsByUserId = (req,res)=> {
     let query = `SELECT * FROM likedChannels WHERE userId = $userId`
@@ -154,9 +150,7 @@ const deleteChannelsLike = (req,res)=> {
             res.status(400).json({error: 'There is no such channel in likedChannels'})
         }
     })
-    
 }
-
 
 
 // Export the differents route handlers

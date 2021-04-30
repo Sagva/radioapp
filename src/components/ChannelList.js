@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ChannelContext } from "../contexts/ChannelContext";
 import { UserContext } from "../contexts/UserContext";
@@ -9,41 +9,38 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const ChannelList = () => {
     const history = useHistory()
+
+    const [isLikePressed, setIsLikePressed] = useState(false); 
   
     const { channels } = useContext(ChannelContext);
 
-    const { registerChannelsLike, activeUser, isLoggedIn, markedChannels, deleteChannelsLike } = useContext(UserContext);
+    const { registerChannelsLike, activeUser, isLoggedIn, markedChannels, getLikedChannelsByUserId, deleteChannelsLike } = useContext(UserContext);
 
-    useEffect(() => {
-        console.log(`activeUser is`, activeUser)
-        
-    }, [activeUser]);
-
-    
     
     const handleLikeClick = async (isLiked, channelId) => {
-        console.log(`channelId is`, channelId, `user id is ${activeUser.id}`, `isLiked `, isLiked) //{ userId: 2, channelId: 132}
+        console.log(`channelId is`, channelId, `user id is ${activeUser.id}`) //{ userId: 2, channelId: 132}
         let userAndChannelId = { 
             userId: activeUser.id,
             channelId: channelId
         }
         if(!isLiked) {
-            console.log(`isLiked`, isLiked);
-            let result = await registerChannelsLike(userAndChannelId)
+            await registerChannelsLike(userAndChannelId)
             .then(result => {
                 if(result.success) {
                     document.querySelector(`#btn${channelId}`).children[0].style.color = 'red'
+                    getLikedChannelsByUserId(activeUser.id)
                 }
             })
         } else {
-            console.log(`inside else would delete like`);
-            let result = await deleteChannelsLike(userAndChannelId)
+            await deleteChannelsLike(userAndChannelId)
             .then(result => {
                 if(result.success) {
                     document.querySelector(`#btn${channelId}`).children[0].style.color = 'white'
+                    getLikedChannelsByUserId(activeUser.id)
                 }
             })
         }
+        setIsLikePressed(!isLikePressed)
        
     }
 
