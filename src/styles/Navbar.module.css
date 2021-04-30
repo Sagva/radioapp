@@ -61,10 +61,7 @@
 }
 
 @media (min-width: 576px) {
-    .brandBox {
-        width: 150px;
-        
-    }
+    
     .navbar ul {
         flex-direction: row;
     }

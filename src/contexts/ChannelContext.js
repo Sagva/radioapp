@@ -43,7 +43,6 @@ const ChannelContextProvider = (props) => {
   const getProgrambyId = async (programId) => {
     let program = await fetch(`/api/v1/program/getbyid/${programId}`);
     program = await program.json();
-    console.log(program);
     return program
   };
 
