@@ -5,6 +5,7 @@ import { UserContext } from "../contexts/UserContext";
 import styles from "../styles/ChannelList.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { LikesContext } from "../contexts/LikesContext";
 
 
 const ChannelList = () => {
@@ -14,7 +15,8 @@ const ChannelList = () => {
   
     const { channels } = useContext(ChannelContext);
 
-    const { registerChannelsLike, activeUser, isLoggedIn, markedChannels, getLikedChannelsByUserId, deleteChannelsLike } = useContext(UserContext);
+    const { activeUser, isLoggedIn } = useContext(UserContext);
+    const { registerChannelsLike, getLikedChannelsByUserId, markedChannels, deleteChannelsLike } = useContext(LikesContext);
 
     
     const handleLikeClick = async (isLiked, channelId) => {

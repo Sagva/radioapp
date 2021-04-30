@@ -8,6 +8,7 @@ import ChannelContextProvider from './contexts/ChannelContext'
 import ChosenPrograms from './pages/ChosenPrograms'
 import Login from './pages/Login'
 import UserProvider from "./contexts/UserContext";
+import LikesProvider from "./contexts/LikesContext";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
     <BrowserRouter>
       <ChannelContextProvider>
         <UserProvider>
+          <LikesProvider>
           <Navbar></Navbar>
           <Route exact path='/' component={Home}/>
           <Route exact path='/channel/getbyid/:channelId' component={ChannelDetails}/>
@@ -22,6 +24,7 @@ function App() {
           <Route exact path='/programs/getbycategoryid/:categoryId' component={ChosenPrograms}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
+          </LikesProvider>
         </UserProvider>
       </ChannelContextProvider>
     </BrowserRouter>
