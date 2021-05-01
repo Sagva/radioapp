@@ -69,12 +69,12 @@ const Register = () => {
                     
                 </div>
                 <div className="mb-4">
-                    <label for="password" className="form-label">Password</label>
-                    <input placeholder='password' type="password" className="form-control" id="password" onChange={(e) => handlePasswordChange(e)}/>
-                </div>
-                <div className="mb-4">
                     <label for="email" className="form-label">Email</label>
                     <input placeholder='email' type="email" className="form-control" id="email" onChange={(e) => handleEmailChange(e)}/>
+                </div>
+                <div className="mb-4">
+                    <label for="password" className="form-label">Password</label>
+                    <input placeholder='password' type="password" className="form-control" id="password" onChange={(e) => handlePasswordChange(e)}/>
                 </div>
                 
                 <div className='text-center'><button type="submit" className='btnBrand'>Bli medlem</button></div>

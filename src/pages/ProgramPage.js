@@ -18,9 +18,7 @@ const ProgramPage = (props) => {
     useEffect(() => {
         const programGetting = async () => {
             let response = await getProgrambyId(programId)
-
             setProgram(response.program)
-
         }
         programGetting()
 
@@ -30,18 +28,18 @@ const ProgramPage = (props) => {
 
     useEffect(() => {
         if (isLoggedIn && program && likedPrograms) {
-
-            console.log(`likedPrograms`, likedPrograms);
             setIsProgramLiked(isChannelOrProgramLiked(program.id, likedPrograms))
         }
 
 
     }, [isLoggedIn, program, likedPrograms])
 
-    useEffect(() => {
-        console.log(`does the user ${activeUser.id} like this program`, isProgramLiked);
-
-    }, [isProgramLiked])
+    //for changing color of heart (white for not liked, red for liked)
+    const markProgram = (color) => {
+        document.querySelector(`#btn${programId}`).children[0].style.color = `${color}`
+        getLikedProgramsByUserId(activeUser.id)
+        setIsProgramLiked(isChannelOrProgramLiked(programId, likedPrograms))
+    }
 
     const handleLikeClick = async (programId) => {
 
@@ -52,14 +50,10 @@ const ProgramPage = (props) => {
 
         if (!isProgramLiked) {
             let result = await registerProgramsLike(userAndProgramId)
-            document.querySelector(`#btn${programId}`).children[0].style.color = 'red'
-            getLikedProgramsByUserId(activeUser.id)
-            setIsProgramLiked(isChannelOrProgramLiked(programId, likedPrograms))
+            markProgram('red')
         } else if (isProgramLiked) {
             let result = await deleteProgramsLike(userAndProgramId)
-            document.querySelector(`#btn${programId}`).children[0].style.color = 'white'
-            getLikedProgramsByUserId(activeUser.id)
-            setIsProgramLiked(isChannelOrProgramLiked(programId, likedPrograms))
+            markProgram('white')
         }
 
     }

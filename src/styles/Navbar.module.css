@@ -13,13 +13,9 @@
     font-weight: 400;
     color: #333;
 }
-.navbar ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0;
-}
-.navbar li a{
+
+.navbar li a,
+.navDropDown {
     display:inline-block;
     text-decoration: none;
     padding: 0 0.4rem;
@@ -29,14 +25,12 @@
 }
 
 .navItem:hover, 
-.navItem.active{
+.navItem.active,
+.navItem:focus {
     color: #BBE42A;
     text-decoration: underline;
+    background-color: transparent !important;
 }
-
-
-
-
 
 
 .btnAuthorisation {
@@ -60,13 +54,22 @@
     color: #ffffff;
 }
 
+.navDropDownBtn,
+.navDropDownBtn:focus {
+    background-color: transparent !important;
+    color: #333 !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.navDropDownBtn svg path { 
+    color: #BBE42A; 
+}
+
 @media (min-width: 576px) {
     
-    .navbar ul {
-        flex-direction: row;
-    }
-    
-    .navbar li a {
+    .navbar li a,
+    .navDropDownBtn {
         margin: 0 .5rem 0 0;
         padding: 0.4rem;
         font-size: 1.2rem;
