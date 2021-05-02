@@ -29,16 +29,13 @@ function Navbar() {
 
                 {isLoggedIn &&
                     <div >
-                        {/* <li><NavLink exact to='/favorites' className={styles.navItem} activeStyle={{ color: '#BBE42A', textDecoration: 'none' }}> Favoriter </NavLink></li> */}
-                        {/* <li><NavLink to='/' className={styles.navItem} onClick={handkeLogoutClick}>Logout</NavLink></li> */}
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic" className={styles.navDropDownBtn}>
                                 <FontAwesomeIcon icon={faUser} />
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href="/favoritechannels" className={`${styles.navItem} dropdown-item`}>Favoritkanaler</Dropdown.Item>
-                                <Dropdown.Item href="favoriteprograms" className={`${styles.navItem} dropdown-item`}>Favoritprogram</Dropdown.Item>
+                                <Dropdown.Item href="/favorites" className={`${styles.navItem} dropdown-item`}>Favoriter</Dropdown.Item>
                                 <Dropdown.Item href="#" className={`${styles.navItem} dropdown-item`}>Ändra användarnamn</Dropdown.Item>
                                 <Dropdown.Item href="/" className={`${styles.navItem} dropdown-item`} onClick={handkeLogoutClick}>Logga ut</Dropdown.Item>
                             </Dropdown.Menu>

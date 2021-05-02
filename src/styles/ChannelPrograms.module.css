@@ -18,3 +18,19 @@
     height: auto;
 }
 
+.btnLikeChannel{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.btnLikeChannel, .btnLikeProgram {
+    color: #fff;
+    border: none;
+    background-color: rgba(70, 69, 69, 0.787);
+    border-radius: 5px;
+    
+}
+
+.heartIcon{
+    font-size: 26px;    
+}

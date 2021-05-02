@@ -20,6 +20,7 @@ const ChannelContextProvider = (props) => {
   };
 
   const getChannelbyId = async (channelId) => {
+    
     let channel = await fetch(`/api/v1/channel/getbyid/${channelId}`);
     channel = await channel.json();
     

@@ -27,13 +27,6 @@ const ChannelSchedule = (props) => {
         scheduleGetting()
         
     },[chosenDate])
-
-    useEffect( ()=> {
-        console.log(schedule);
-        
-    },[schedule])
-
-    
     
     const handleChange = (e) => {
         console.log(e.target.value);

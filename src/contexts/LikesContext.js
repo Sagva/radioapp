@@ -44,7 +44,6 @@ const LikesProvider = (props) => {
       body: JSON.stringify(userAndChannelId),
     });
     result = await result.json();
-    console.log('inside register function', result);
     return result;
   };
 
