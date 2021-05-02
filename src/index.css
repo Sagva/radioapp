@@ -27,6 +27,7 @@ h2 {
   padding: 20px 10px !important;
 }
 
+
 .btnBrand {
   margin-right: 10px;
   padding: 8px 20px;
@@ -46,4 +47,13 @@ h2 {
 .btnBrand:hover {
   background-color: #BBE42A;
   color: #333;
+}
+
+#newUserName {
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+#newUserName:focus {
+  outline: none;
 }

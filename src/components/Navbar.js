@@ -36,7 +36,7 @@ function Navbar() {
 
                             <Dropdown.Menu>
                                 <Dropdown.Item href="/favorites" className={`${styles.navItem} dropdown-item`}>Favoriter</Dropdown.Item>
-                                <Dropdown.Item href="#" className={`${styles.navItem} dropdown-item`}>Ändra användarnamn</Dropdown.Item>
+                                <Dropdown.Item href="/user-page" className={`${styles.navItem} dropdown-item`}>Min sida</Dropdown.Item>
                                 <Dropdown.Item href="/" className={`${styles.navItem} dropdown-item`} onClick={handkeLogoutClick}>Logga ut</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>

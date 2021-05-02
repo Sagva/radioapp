@@ -63,6 +63,27 @@ const UserProvider = (props) => {
     return result;
   };
 
+  const editUserName = async (userData) => { //required format {id: 1, userName: 'Elena'}
+    let result = await fetch("/api/v1/users/updateuser", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    result = await result.json()
+    .then(result => {
+      whoAmI()
+      console.log('inside editUserName function', result);
+    })
+
+    console.log('editUserName', userData);
+    return result;
+  };
+
+  
+
 
   const values = {
     isLoggedIn,
@@ -73,6 +94,7 @@ const UserProvider = (props) => {
     setActiveUser,
     activeUser,
     whoAmI,
+    editUserName
   };
 
   return (

@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import UserProvider from "./contexts/UserContext";
 import LikesProvider from "./contexts/LikesContext";
 import Favorites from './pages/Favorites'
+import UserPage from './pages/UserPage'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/favorites' component={Favorites}/>
+          <Route exact path='/user-page' component={UserPage}/>
           </LikesProvider>
         </UserProvider>
       </ChannelContextProvider>

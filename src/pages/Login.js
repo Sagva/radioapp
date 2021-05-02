@@ -53,7 +53,7 @@ const Login = () => {
                         <input placeholder='password' type="password" className="form-control" id="password" onChange={(e) => handlePasswordChange(e)}/>
                     </div>
                     
-                    <div className='text-center'><button type="submit" className='btnBrand'>Logga in</button></div>
+                    <div className='text-center btnBrand'><button type="submit" className='btnBrand'>Logga in</button></div>
                 </form>
             </div>
         </div>
