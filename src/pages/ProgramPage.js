@@ -14,60 +14,51 @@ const ProgramPage = (props) => {
 
     const [program, setProgram] = useState(null);
 
-
+    //getting program from SR API
     useEffect(() => {
         const programGetting = async () => {
             let response = await getProgrambyId(programId)
             setProgram(response.program)
         }
         programGetting()
-
     }, [programId])
 
     const [isProgramLiked, setIsProgramLiked] = useState(false);
 
+    //check if the program is in the list of liked programs of that user
     useEffect(() => {
         if (isLoggedIn && program && likedPrograms) {
-            setIsProgramLiked(isChannelOrProgramLiked(program.id, likedPrograms))
+            setIsProgramLiked(isChannelOrProgramLiked(program.id, likedPrograms))//either true or false
         }
-
-
     }, [isLoggedIn, program, likedPrograms])
 
-    //for changing color of heart (white for not liked, red for liked)
-    const markProgram = (color) => {
-        document.querySelector(`#btn${programId}`).children[0].style.color = `${color}`
-        getLikedProgramsByUserId(activeUser.id)
-        setIsProgramLiked(isChannelOrProgramLiked(programId, likedPrograms))
+    //for changing status of the program on like click
+    const markProgram = () => {
+        getLikedProgramsByUserId(activeUser.id)//getting liked programs from DB for particular user, 
+        //function refreshes variable 'likedPrograms', it triggers renewal of variable 'isProgramLiked', so the icon heart gets its color
+        
     }
 
     const handleLikeClick = async (programId) => {
-
         let userAndProgramId = {
             userId: activeUser.id,
             programId: programId
         }
-
         if (!isProgramLiked) {
-            let result = await registerProgramsLike(userAndProgramId)
-            markProgram('red')
+            await registerProgramsLike(userAndProgramId) //add liked program to DB
+            markProgram()//refreshes variable 'isProgramLiked'
         } else if (isProgramLiked) {
-            let result = await deleteProgramsLike(userAndProgramId)
-            markProgram('white')
+            await deleteProgramsLike(userAndProgramId)////delete liked program from DB
+            markProgram()//refreshes variable 'isProgramLiked'
         }
-
     }
 
     let content = ''
     if (program) {
-
-
         content = <div>
-
             <h2 className='text-center'>{program.name}</h2>
             <div className='d-sm-flex container border-top pt-4'>
                 <div className={`${styles.imageBox} mx-3 my-2 flex-shrink-0`}>
-
                     <img className='img-fluid img-thumbnail' src={program.programimage} alt={program.name} />
                 </div>
                 <div>
@@ -86,10 +77,7 @@ const ProgramPage = (props) => {
                     </button>}
                 </div>
             </div>
-
         </div>
-
-
     } else {
         content = <div>Loading...</div>
     }
