@@ -14,12 +14,13 @@ const UserProvider = (props) => {
   useEffect(() => {
     whoAmI()
   }, []);
-
+  
   const whoAmI = async () => {
     let who = await fetch("/api/v1/users/whoami");
     who = await who.json()
       .then(who => {
         if (!who) {
+          setIsLoggedIn(false);
           return
         }
         setIsLoggedIn(true);
