@@ -4,7 +4,8 @@ import { createContext, useState, useEffect, useContext } from "react";
 export const UserContext = createContext();
 
 const UserProvider = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //unknown in the beginning uses to prevent of appearance of links for not logged in users at the navbar, when the user is already logged in
+  const [isLoggedIn, setIsLoggedIn] = useState('unknown');
 
   //activeUser sets either at first rendering or at Login page, or at Register page
   //format of activeUser is {id: 3, email: "www@com.com", userName: "www"}

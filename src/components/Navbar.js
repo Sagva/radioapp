@@ -16,8 +16,6 @@ function Navbar() {
         logout()
         setIsLoggedIn(false)
     }
-
-
     return (
         <div className={`${styles.navbar} container d-flex align-items-center justify-content-between my-2`}>
             <div className={styles.brandBox}>
@@ -27,6 +25,11 @@ function Navbar() {
 
                 <li><NavLink exact to='/' className={styles.navItem} activeStyle={{ color: '#BBE42A', textDecoration: 'none' }} >Kanaler</NavLink></li>
 
+                {isLoggedIn === 'unknown' &&
+                    <div >
+                        {/* Displays nothing until 'isLoggedIn' doesn't get its value (either true or false). 'Unknown' is the original state of 'isLoggedIn'. It allows to prevent of appearance of links for not logged in users at the navbar, when the user is already logged in.  */}
+                    </div>
+                }
                 {isLoggedIn &&
                     <div >
                         <Dropdown>
