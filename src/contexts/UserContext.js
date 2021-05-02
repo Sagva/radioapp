@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 
 
 export const UserContext = createContext();
@@ -14,10 +14,10 @@ const UserProvider = (props) => {
   useEffect(() => {
     whoAmI()
   }, []);
-  
+
   const whoAmI = async () => {
     let who = await fetch("/api/v1/users/whoami");
-    who = await who.json()
+    await who.json()
       .then(who => {
         if (!who) {
           setIsLoggedIn(false);
@@ -75,16 +75,16 @@ const UserProvider = (props) => {
     });
 
     result = await result.json()
-    .then(result => {
-      whoAmI()
-      console.log('inside editUserName function', result);
-    })
+      .then(result => {
+        whoAmI()
+        console.log('inside editUserName function', result);
+      })
 
     console.log('editUserName', userData);
     return result;
   };
 
-  
+
 
 
   const values = {

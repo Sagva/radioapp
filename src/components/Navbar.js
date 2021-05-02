@@ -30,7 +30,7 @@ function Navbar() {
                         {/* Displays nothing until 'isLoggedIn' doesn't get its value (either true or false). 'Unknown' is the original state of 'isLoggedIn'. It allows to prevent of appearance of links for not logged in users at the navbar, when the user is already logged in.  */}
                     </div>
                 }
-                {isLoggedIn &&
+                {(isLoggedIn && isLoggedIn !=='unknown') &&
                     <div >
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic" className={styles.navDropDownBtn}>

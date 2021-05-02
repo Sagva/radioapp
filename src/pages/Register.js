@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import styles from '../styles/Login.module.css'
@@ -64,16 +64,16 @@ const Register = () => {
         <div className={styles.loginBlock}>
             <form onSubmit={(e) => handleSubmit(e)} className='pb-1'>
                 <div className="mb-3">
-                    <label for="userName" className="form-label">Your name</label>
+                    <label htmlFor="userName" className="form-label">Your name</label>
                     <input placeholder='your name' type="text" className="form-control" id="userName" onChange={(e) => handleNameChange(e)}/>
                     
                 </div>
                 <div className="mb-4">
-                    <label for="email" className="form-label">Email</label>
+                    <label htmlFor="email" className="form-label">Email</label>
                     <input placeholder='email' type="email" className="form-control" id="email" onChange={(e) => handleEmailChange(e)}/>
                 </div>
                 <div className="mb-4">
-                    <label for="password" className="form-label">Password</label>
+                    <label htmlFor="password" className="form-label">Password</label>
                     <input placeholder='password' type="password" className="form-control" id="password" onChange={(e) => handlePasswordChange(e)}/>
                 </div>
                 

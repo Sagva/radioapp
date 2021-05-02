@@ -4,8 +4,6 @@ import { ChannelContext } from "../contexts/ChannelContext";
 import { LikesContext } from "../contexts/LikesContext";
 import { UserContext } from "../contexts/UserContext";
 import styles from "../styles/ChannelPrograms.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
 const ChannelPrograms = (props) => {
@@ -39,7 +37,7 @@ const ChannelPrograms = (props) => {
             }
             programsGetting()
         }
-    }, [channelId])
+    }, [channelId, getChannelPrograms, isAllPrograms])
 
     //for rendering only favorite programs
     const programsGetting = async () => {
@@ -54,7 +52,7 @@ const ChannelPrograms = (props) => {
         if (!isAllPrograms && likedPrograms) {//if isAllPrograms=false we are on the '/favorites' page, so we will render only liked programs. We need also wait until 'likedPrograms' are obtained from DB
             programsGetting()
         }
-    }, [likedPrograms])
+    }, [likedPrograms, isAllPrograms])
 
     
     const redirectToProgramPage = (programId) => {

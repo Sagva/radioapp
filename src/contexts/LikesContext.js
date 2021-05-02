@@ -27,7 +27,7 @@ const LikesProvider = (props) => {
   
 
   useEffect(() => {
-    //after we got know that user is logged in and we got channels from SVT as well as liked channels from DB for active user
+    //after we've got known that user is logged in and we got channels from SVT as well as liked channels from DB for active user
     if (isLoggedIn && channels && likedChannels) {
       markLikedChannel() //set mark isLiked at SVT channels (true or false depense on if the channel was in LikedChannels in the DB) 
     }

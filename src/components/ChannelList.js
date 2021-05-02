@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { ChannelContext } from "../contexts/ChannelContext";
 import { UserContext } from "../contexts/UserContext";

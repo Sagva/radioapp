@@ -21,7 +21,7 @@ const ProgramPage = (props) => {
             setProgram(response.program)
         }
         programGetting()
-    }, [programId])
+    }, [programId, getProgrambyId])
 
     const [isProgramLiked, setIsProgramLiked] = useState(false);
 
@@ -30,7 +30,7 @@ const ProgramPage = (props) => {
         if (isLoggedIn && program && likedPrograms) {
             setIsProgramLiked(isChannelOrProgramLiked(program.id, likedPrograms))//either true or false
         }
-    }, [isLoggedIn, program, likedPrograms])
+    }, [isLoggedIn, program, likedPrograms, isChannelOrProgramLiked])
 
     //for changing status of the program on like click
     const markProgram = () => {
@@ -66,7 +66,6 @@ const ProgramPage = (props) => {
                     {program.programcategory && <p className='mx-3 my-2'><b>Kategori:</b> {program.programcategory.name}</p>}
                     {program.broadcastinfo && <p className='mx-3 my-2'><b>Sänds:</b> {program.broadcastinfo}</p>}
                     <p className='mx-3 my-2'><b>Beskrivning:</b> {program.description}</p>
-                    <p>program.id {program.id}</p>
                 </div>
                 <div className='flex-grow-1 d-flex justify-content-end align-items-start'>
                     {isLoggedIn && <button onClick={() => handleLikeClick(program.id)} type='button' id={`btn${program.id}`} className={`${styles.btnLikeProgram} my-2 `}>

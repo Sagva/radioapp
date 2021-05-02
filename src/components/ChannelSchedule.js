@@ -26,7 +26,7 @@ const ChannelSchedule = (props) => {
         }
         scheduleGetting()
         
-    },[chosenDate])
+    },[chosenDate, channelId, getChannelSchedule]) 
     
     const handleChange = (e) => {
         console.log(e.target.value);

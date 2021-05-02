@@ -22,7 +22,7 @@ const ChannelDetails = (props) => {
         }
         channelGetting()
 
-    }, [channelId])
+    }, [channelId, getChannelbyId])
 
 
     const chooseComponentToRender = (e) => {

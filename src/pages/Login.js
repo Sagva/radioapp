@@ -44,12 +44,12 @@ const Login = () => {
             <div className={styles.loginBlock}>
                 <form onSubmit={(e) => handleSubmit(e)} className='pb-1'>
                     <div className="mb-3">
-                        <label for="email" className="form-label">Email address</label>
+                        <label htmlFor="email" className="form-label">Email address</label>
                         <input placeholder='email' type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={(e) => handleEmailChange(e)}/>
                         
                     </div>
                     <div className="mb-4">
-                        <label for="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">Password</label>
                         <input placeholder='password' type="password" className="form-control" id="password" onChange={(e) => handlePasswordChange(e)}/>
                     </div>
                     

@@ -17,7 +17,7 @@ const ChosenPrograms = (props) => {
         }
         programsGetting()
         
-    },[categoryId])
+    },[categoryId, getProgramsByCategoryId])
 
     useEffect( ()=> {
         console.log(programs);
