@@ -57,3 +57,41 @@ h2 {
 #newUserName:focus {
   outline: none;
 }
+
+
+/* Player styling */
+
+.btnPlay {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background-color: rgba(70, 69, 69, 0.787);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+
+.playIcon {
+  color: white;
+  font-size: 35px;
+}
+
+
+.player {
+  background-color: rgba(70, 69, 69, 0.9) !important;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.player *,
+.rhap_total-time,
+#rhap_current-time,
+.player svg {
+  color: #fff !important;
+}
+ 
+

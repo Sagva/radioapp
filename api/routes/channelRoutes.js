@@ -22,6 +22,8 @@ router.get('/programcategories/getall/:dummyId', channelController.getAllCategor
 router.get('/programs/getbycategoryid/:categotyid', channelController.getProgramsByCategoryId)
 //url for checking in the browser http://localhost:3000/api/v1/programs/getbycategoryid/82 //Dokumentär
 
+router.post('/program/play', channelController.getAudioSource)
+//url for checking in the browser http://localhost:3000/api/v1/program/play    
 
 
 

@@ -60,6 +60,18 @@ const ChannelContextProvider = (props) => {
     return programsByCategoryId
   };
 
+  const getAudioSource = async(programId) => {
+    let result = await fetch("/api/v1/program/play", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({programId: `${programId}`}),
+    })
+    result = await result.json(); 
+    return result;
+  }
+
   const values = {
     channels,
     categories,
@@ -67,7 +79,8 @@ const ChannelContextProvider = (props) => {
     getChannelSchedule,
     getChannelPrograms,
     getProgrambyId,
-    getProgramsByCategoryId
+    getProgramsByCategoryId,
+    getAudioSource
   };
 
   return (

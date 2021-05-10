@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
+import {useHistory} from 'react-router-dom'
 import { ChannelContext } from "../contexts/ChannelContext";
 import styles from "../styles/ChannelSchedule.module.css";
-import {useHistory} from 'react-router-dom'
 
 const ChannelSchedule = (props) => {
     let channelId = props.channelId
-    
     
     const [schedule, setSchedule] = useState(null);
     const {getChannelSchedule } = useContext(ChannelContext);
@@ -29,7 +28,6 @@ const ChannelSchedule = (props) => {
     },[chosenDate, channelId, getChannelSchedule]) 
     
     const handleChange = (e) => {
-        console.log(e.target.value);
         setChosenDate(e.target.value)
     }
     const history = useHistory()
@@ -43,6 +41,7 @@ const ChannelSchedule = (props) => {
         
         content = <div>
             <h2>Tablå</h2>
+            
             <div>
                 <label className={styles.dateLabel} htmlFor="date"><b>Välj datum:</b></label>
 
@@ -54,10 +53,13 @@ const ChannelSchedule = (props) => {
 
             </div>
             {schedule.map((program, i) => (
-
-             <div key={i} className={`${styles.programInfo}`} onClick={()=>redirectToProgramPage(`${program.program.id}`)}>
-                 <span className='d-inline-block mt-2'><b>{program.starttimeutc}</b> <b>{program.program.name}</b></span>
-                 <p className={styles.programDesc}>{program.description}</p>
+                
+             <div key={i} className={`${styles.programInfo} d-flex`} onClick={()=>redirectToProgramPage(`${program.program.id}`)}>
+                 
+                 <div>
+                     <span className='d-inline-block mt-2'><b>{program.starttimeutc}</b> <b>{program.program.name}</b></span>
+                     <p className={styles.programDesc}>{program.description}</p>
+                 </div>
              </div>
             ))}
             

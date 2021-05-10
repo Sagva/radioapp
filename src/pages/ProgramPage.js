@@ -2,11 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
 import styles from '../styles/ChannelList.module.css'
 import { UserContext } from "../contexts/UserContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { LikesContext } from "../contexts/LikesContext";
+import { PlayerContext } from "../contexts/PlayerContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 const ProgramPage = (props) => {
+    const { handlePauseClick, handlePlayClick, resourceToPlay  } = useContext(PlayerContext);
     const programId = props.match.params.programId
     const { getProgrambyId } = useContext(ChannelContext);
     const { isLoggedIn, activeUser } = useContext(UserContext);
@@ -57,7 +62,17 @@ const ProgramPage = (props) => {
     if (program) {
         content = <div>
             <h2 className='text-center'>{program.name}</h2>
-            <div className='d-sm-flex container border-top pt-4'>
+            <AudioPlayer 
+                    className='player'
+                    customAdditionalControls={[]}
+                    onPause={handlePauseClick} 
+                    src={resourceToPlay ? resourceToPlay : '#'}
+                    // other props here
+                /> 
+            <div className='d-sm-flex container border-top pt-4 position-relative'>
+                <button onClick={(e)=> handlePlayClick(e, `${program.id}` )} className={`btnPlay btnPlay-${program.id}`} style={{top: 125, left: 125}}>
+                    <FontAwesomeIcon icon={faPlay} className='playIcon'/>
+                </button>
                 <div className={`${styles.imageBox} mx-3 my-2 flex-shrink-0`}>
                     <img className='img-fluid img-thumbnail' src={program.programimage} alt={program.name} />
                 </div>

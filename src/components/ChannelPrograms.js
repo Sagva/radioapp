@@ -3,6 +3,11 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { ChannelContext } from "../contexts/ChannelContext";
 import { LikesContext } from "../contexts/LikesContext";
 import { UserContext } from "../contexts/UserContext";
+import { PlayerContext } from "../contexts/PlayerContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 import styles from "../styles/ChannelPrograms.module.css";
 
 
@@ -15,12 +20,15 @@ const ChannelPrograms = (props) => {
     const { getChannelPrograms, getProgrambyId } = useContext(ChannelContext);
     const { isLoggedIn } = useContext(UserContext);
     const { likedPrograms } = useContext(LikesContext);
+    const { handlePauseClick, handlePlayClick, resourceToPlay, setResourceToPlay  } = useContext(PlayerContext);
 
     //Decision about what programs we are going to render (all programs from SR API or only liked for that particular user) will depend on location.pathname
     let isAllPrograms = location.pathname === '/favorites' ? false : true
     
     //programsToRender which depends on location.pathname will store here
     const [programsToRender, setProgramsToRender] = useState([]);
+
+    
 
     useEffect(() => {
 
@@ -56,8 +64,12 @@ const ChannelPrograms = (props) => {
 
     
     const redirectToProgramPage = (programId) => {
+        setResourceToPlay('')
         history.push(`/program/getbyid/${programId}`)
     }
+
+     
+
 
     let headerText = location.pathname === '/favorites' && isLoggedIn ? <h1>Favoritprogram</h1> : <h2>Program</h2>
     let content = ''
@@ -69,8 +81,15 @@ const ChannelPrograms = (props) => {
         </div>
 
     } else if (programsToRender) {
-        content = <div className='container'>
+        content = <div className='container mb-5 pb-5'>
             {headerText}
+                <AudioPlayer 
+                    className='player'
+                    customAdditionalControls={[]}
+                    onPause={handlePauseClick} 
+                    src={resourceToPlay ? resourceToPlay : '#'}
+                    // other props here
+                /> 
             {programsToRender.map((program, i) => (
                 <div key={i} className={`${styles.programInfo} d-flex my-3`} onClick={() => redirectToProgramPage(`${program.id}`)}>
                     <div className={styles.programImgBox}><img src={program.programimage} alt={program.name} /></div>
@@ -79,8 +98,13 @@ const ChannelPrograms = (props) => {
                         <p className={`${styles.programDesc} d-sm-none`}>{program.description.slice(0, 50) + "..."}</p>
                         <p className={`${styles.programDesc} d-none d-sm-block`}>{program.description}</p>
                     </div>
+                    
+                    <button onClick={(e)=> handlePlayClick(e, `${program.id}` )} className={`btnPlay btnPlay-${program.id}`}>
+                        <FontAwesomeIcon icon={faPlay} className='playIcon'/>
+                    </button>
                 </div>
             ))}
+           
         </div>
     }
 
