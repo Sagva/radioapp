@@ -1,0 +1,21 @@
+.channelSchedule {
+    /* color: #333; */
+}
+.programInfo{
+    margin: 0 10px;
+    cursor: pointer;
+    /* position: relative; */
+}
+.programInfo:hover{
+    background-color: rgba(238, 238, 238, 0.486);
+}
+
+.dateLabel {
+    margin: 10px;
+    
+}
+.programDesc{
+    margin-bottom: 0 !important;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}

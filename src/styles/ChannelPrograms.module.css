@@ -1,0 +1,74 @@
+.programInfo {
+    cursor: pointer;
+    position: relative;
+    
+}
+.programInfo:hover{
+    background-color: rgba(238, 238, 238, 0.486);
+}
+
+.programImgBox {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    margin-right: 10px;
+
+    
+
+}
+
+.programImgBox img {
+    width: 100%;
+    height: auto;
+}
+
+.btnLikeChannel{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.btnLikeChannel, .btnLikeProgram {
+    color: #fff;
+    border: none;
+    background-color: rgba(70, 69, 69, 0.787);
+    border-radius: 5px;
+    
+}
+
+.heartIcon{
+    font-size: 26px;    
+}
+/* 
+.btnPlay {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background-color: rgba(70, 69, 69, 0.787);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+
+.playIcon {
+    color: white;
+    font-size: 35px;
+}
+
+
+.player {
+    background-color: rgba(70, 69, 69, 0.9);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+.player svg {
+    color: #fff;
+}
+.player * {
+    color: #fff;
+}
+#rhap_current-time {
+    color: #fff;
+}  */

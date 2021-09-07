@@ -1,0 +1,84 @@
+.brandBox {
+    width: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.brandLogo {
+    width: 100%;
+}
+.brandName {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 400;
+    color: #333;
+}
+
+.navbar li a,
+.navDropDown {
+    display:inline-block;
+    text-decoration: none;
+    padding: 0 0.4rem;
+    margin: 0.3rem 1rem;
+    color: #333;
+    font-size: 1rem;
+}
+
+.navItem:hover, 
+.navItem.active,
+.navItem:focus {
+    color: #BBE42A;
+    text-decoration: underline;
+    background-color: transparent !important;
+}
+
+
+.btnAuthorisation {
+    margin-right: 10px;
+    
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 200px;
+    background-color: transparent;
+    color: #BBE42A;
+    border: 1px solid #BBE42A;
+    cursor: pointer;
+    transition: all 0.2s;
+  
+  }
+  
+  
+.btnAuthorisation:hover {
+    background-color: #BBE42A;
+    color: #ffffff;
+}
+
+.navDropDownBtn,
+.navDropDownBtn:focus {
+    background-color: transparent !important;
+    color: #333 !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.navDropDownBtn svg path { 
+    color: #BBE42A; 
+}
+
+@media (min-width: 576px) {
+    
+    .navbar li a,
+    .navDropDownBtn {
+        margin: 0 .5rem 0 0;
+        padding: 0.4rem;
+        font-size: 1.2rem;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .navbar {
+        margin: 0 auto;
+    }
+}
